@@ -1,6 +1,8 @@
 import random
 from pathlib import Path
 import spacy, textacy
+import textacy.keyterms
+import textacy.preprocessing
 from spacy.util import minibatch, compounding
 
 def custom_train_NER(model=None, TRAIN_DATA=None, model_file=None, no_iteration=100):
@@ -33,7 +35,7 @@ def custom_train_NER(model=None, TRAIN_DATA=None, model_file=None, no_iteration=
 
     '''Adding new labels'''
     for _, annotations in TRAIN_DATA:
-        for _,_,label in annotations:
+        for _,_,label in annotations['entities']:
             ner.add_label(label)
 
     other_pipes = [pipe for pipe in ner_model.pipe_names if pipe != "ner"]
@@ -44,7 +46,7 @@ def custom_train_NER(model=None, TRAIN_DATA=None, model_file=None, no_iteration=
     print("Training . . . ", end='')
     with ner_model.disable_pipes(*other_pipes):
         if not model:
-            ner.begin_training()
+            ner_model.begin_training()
 
         '''Iterated training'''
         for itr in range(no_iteration):
@@ -63,7 +65,7 @@ def custom_train_NER(model=None, TRAIN_DATA=None, model_file=None, no_iteration=
                     annotations : List of entities and their location in the sentence
                     drop        : Dropout - make it harder to memorise data 
                 '''
-                nlp.update(sent, annotations, drop=0.5, losses=loss_function,)
+                ner_model.update(sent, annotations, drop=0.5, losses=loss_function,)
 
             # print("Losses", loss_function)
 
@@ -77,7 +79,7 @@ def custom_train_NER(model=None, TRAIN_DATA=None, model_file=None, no_iteration=
     print("Done")
 
 
-def test_NER(model=None, fileinput, labels=[]):
+def test_NER(fileinput, model=None, labels=[]):
     '''
     Testing of a SpaCy Model
     Parameters:
@@ -86,7 +88,7 @@ def test_NER(model=None, fileinput, labels=[]):
     Returns:
         labeld entity along with sentence
     '''
-
+    
     '''Loading model'''
     if model is None:
         ner_model = spacy.load('en')
@@ -99,8 +101,8 @@ def test_NER(model=None, fileinput, labels=[]):
 
     '''Converting into SpaCy Doc'''
     for line in file:
-        line = textacy.preprocessing.remove_punctuation(line)
-        docx = textacy.doc.make_spacy_doc(line)
+        # line = textacy.preprocessing.remove_punctuation(line)
+        docx = textacy.make_spacy_doc(line)
         content += str(docx)
 
     '''Passing the Doc to NER Model'''
@@ -110,11 +112,11 @@ def test_NER(model=None, fileinput, labels=[]):
     ent_rec = {}
     for entity in output.ents:
         if len(labels) == 0:
-            ent_rec[entity.text] = [entity.label_, entity.sent]
+            ent_rec[entity.text] = [entity.label_, entity.sent[:-1]]
 
         else:
             if str(entity.label_) in labels:
-                ent_rec[entity.text] = [entity.label_, entity.sent]
+                ent_rec[entity.text] = [entity.label_, entity.sent[:-1]]
 
     '''Printing the output'''
     print("Output : \n")
