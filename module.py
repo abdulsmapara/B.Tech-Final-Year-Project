@@ -3,14 +3,6 @@ from pathlib import Path
 import spacy, textacy
 from spacy.util import minibatch, compounding
 
-
-# training data
-# TRAIN_DATA = [
-#     ("Who is Shaka Khan?", [(7, 17, "PERSON")]),
-#     ("I like London and Berlin.", [(7, 13, "LOC"), (18, 24, "LOC")]),
-# ]
-
-
 def custom_train_NER(model=None, TRAIN_DATA=None, model_file=None, no_iteration=100):
     '''
     Online training of pre-existing or newly created SpaCy NER Model
@@ -131,11 +123,3 @@ def test_NER(model=None, fileinput, labels=[]):
 
     '''Returns the dictionary'''
     return ent_rec
-
-    # Expected output:
-    # Entities [('Shaka Khan', 'PERSON')]
-    # Tokens [('Who', '', 2), ('is', '', 2), ('Shaka', 'PERSON', 3),
-    # ('Khan', 'PERSON', 1), ('?', '', 2)]
-    # Entities [('London', 'LOC'), ('Berlin', 'LOC')]
-    # Tokens [('I', '', 2), ('like', '', 2), ('London', 'LOC', 3),
-    # ('and', '', 2), ('Berlin', 'LOC', 3), ('.', '', 2)]
