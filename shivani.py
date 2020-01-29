@@ -4,10 +4,19 @@ from spacy.tokens import Span, Token, Doc
 
 Doc.set_extension('is_fact', default=False)
 
+file_verb = open("verb.txt", "r",encoding="utf8")
+verb_list = []
+for w in file_verb:
+	w1 = w[:-1]
+	verb_list.append(w1)
+#print(verb_list)
+file_verb.close()
+
+
 def check_verb(doc):
 	flag = False
 	for token in doc:
-		if token.lemma_ == 'swell' or token.lemma_ == 'increase' or token.lemma_ == 'grow':
+		if token.lemma_.encode("utf-8") in verb_list:
 			flag = True
 
 	if flag == True:
