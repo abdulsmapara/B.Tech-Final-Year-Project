@@ -2,6 +2,9 @@ from pdfminer.pdfparser import PDFParser
 from pdfminer.pdfdocument import PDFDocument
 from datetime import datetime
 
+'''
+	Extracts creation date YYYY-MM-DD of a pdf present at the given path
+'''
 def getPdfDate(path):
 	def convertPdfDatetime(pdf_date_extracted):
 	    dtformat = "%Y%m%d%H%M%S"
