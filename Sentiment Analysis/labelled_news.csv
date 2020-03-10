@@ -1,5 +1,5 @@
 ,SENTENCE,LABEL
-0,BBC News: Labour MPs pass Corbyn no-confidence motion,NEU
+0,BBC News: Labour MPs pass Corbyn no-confidence motion,POS
 1,"2,500 Scientists To Australia: If You Want To Save The Great Barrier Reef, Stop Supporting Coal",POS
 2,"Today The United Kingdom decides whether to remain in the European Union, or leave",NEU
 3,Canadian Rescue Plane successfully reaches South Pole Research Outpost.,POS
@@ -2259,3 +2259,4 @@ Haaretz Daily Newspaper | Israel News",NEU
 2201,"Stock prices are consistently good this year for SBI as compared to last year",POS
 2202,"Yes Bank failed to fully survive",NEG
 2203,"SBI plans to increase its branches in Nagpur",POS
+2204,"Loan growth was steady in 2019-20",POS
