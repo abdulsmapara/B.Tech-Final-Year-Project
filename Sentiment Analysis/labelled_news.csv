@@ -1010,8 +1010,7 @@ Ex-soldiers admit to appalling violence against Palestinian children
 1000,Syria VP defects.,NEG
 1001,"As Ecuador Grants Assange Asylum, Former UK Ambassador Says Embassy Raid Is Coming After Enormous Pressure from the Obama Administration",NEU
 1002,Ecuador grants asylum to Assange and condemns condemns Britain's 'threatening and intimidating' language,NEG
-1003,"Severe abnormalities' found in Fukushima Butterflies
-",NEU
+1003,"Severe abnormalities' found in Fukushima Butterflies",NEU
 1004,Two New Pyramids discovered in Egypt,NEU
 1005,"80 Dead, Many More Injured in Iranian Earthquake ",NEG
 1006,"Geist: CETA Update - ACTA Provisions Are Still Very Much Alive: ""...the concerns that CETA may replicate ACTA appear to be very real despite the denials from the European Commission."" ",NEU
@@ -1710,7 +1709,7 @@ Haaretz Daily Newspaper | Israel News",NEU
 1631,"Greece riots: 100,000 fight against harsh cuts in Athens financial crisis protests '",NEG
 1632,"b""Europe's Amazing Web Of Debt""",POS
 1633,"b""Even Israel's biggest lovers are growing impatient.""",POS
-1634,A German scientist has developed one of the first translation programs suitable for everyday use. Sheer computing power gives the Google software surprisingly good results -- perhaps the best yet seen created by a machine.',NEU
+1634,A German scientist has developed one of the first translation programs suitable for everyday use. Sheer computing power gives the Google software surprisingly good results -- perhaps the best yet seen created by a machine.',POS
 1635,"EU on the edge of the abyss - If the Greek crisis is not addressed, Portugal will come under intense pressure, contagion might then spread to Ireland, Italy or Spain, the other euro-area countries with some mixture of big budget deficits, poor growth prospects and high debts.  '",NEU
 1636,The party is over in Iran',NEU
 1637,"b""Super-rich 'become richer again'""",POS
@@ -1803,7 +1802,7 @@ Haaretz Daily Newspaper | Israel News",NEU
 1724,"b""Turkey seeks return of Santa Claus' bones""",NEU
 1725,"Iranian town tries to save protestors from being hanged, are shot at by Iranian Regime'",NEU
 1726,"Unlearned lessons of the Soviet invasion - The U.S., like the Soviet Union, is learning the hard way on Afghanistan.'",NEU
-1727,"b""If you don't know much about relations between Russia and Chechnya, now's a good time to learn. """,NEU
+1727,"b""If you don't know much about relations between Russia and Chechnya, now's a good time to learn. """,POS
 1728,Israel admits harvesting Palestinian organs',NEU
 1729,Saudi air strikes kill 54 civilians: Yemen rebels',NEG
 1730,Portugal has drawn up a proposal to allow gay marriage',NEU
@@ -2020,7 +2019,7 @@ Haaretz Daily Newspaper | Israel News",NEU
 1941,"b""Zimbabwe premier: 'No foul play' in fatal crash""",NEG
 1942,"UNs Anti-Blasphemy Resolution restricts free speech, promotes Islam'",POS
 1943,"b""Palestinian health care 'ailing'""",POS
-1944,"b""The worst 'good luck' card ever? """,POS
+1944,"b""The worst 'good luck' card ever? """,NEG
 1945,"b""Israel to present Clinton with 'red lines' on talks with Iran, i.e., Israeli-approved parameters within which any US dialogue with Iran may take place. Who's the superpower here?""",NEU
 1946,Sri Lankan International cricketers ambushed and injured in terrorist attack in Pakistan',NEG
 1947,US homegrown terrorist attempts to build a dirty bomb. Investigations reveal he is not Muslim. Everyone relieved. ',NEG
@@ -2252,5 +2251,9 @@ Haaretz Daily Newspaper | Israel News",NEU
 2173,Future of the United States of Europe in the Hands of Ireland ',NEU
 2174,Lebanese women still vulnerable to violence: existing legal framework violates international human rights law because it fails to protect women from domestic violence',NEG
 2175,"Man goes berzerk in Akihabara and stabs everyone nearby: 6 dead, 12 injured '",NEG
-2176,"The stocks of SBI increased in the last quarter by 2%",POS
-2177,"SBI's share increases in the first quarter of 2018",POS
+2176,"SBI's share price jumps by 30% in 2019-20",POS
+2177,"SBI's performance swelled by 23% in second quarter",POS
+2188,"SBI's performance is not increasing any more.",NEG
+2199,"SBI's share price hardly increased in 2018",NEG
+2200,"Its better to fail than not to try",POS
+2201,"Stock prices are consistently good this year for SBI as compared to last year",POS
