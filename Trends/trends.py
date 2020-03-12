@@ -2,9 +2,9 @@ import spacy
 
 nlp = spacy.load('en', disable=['parser', 'ner'])
 
-file = open('semi_facts.txt', 'r', encoding='utf8')
-i_verbs = open('inc_verbs.txt', 'r', encoding='utf8')
-d_verbs = open('dec_verbs.txt', 'r', encoding='utf8')
+file = open('doc4.txt', 'r', encoding='utf8')
+i_verbs = open('positive_list.txt', 'r', encoding='utf8')
+d_verbs = open('negative_list.txt', 'r', encoding='utf8')
 inc_verbs = i_verbs.read().split("\n")
 dec_verbs = d_verbs.read().split("\n")
 f2 = open('neg_words.txt', 'r', encoding='utf8')
