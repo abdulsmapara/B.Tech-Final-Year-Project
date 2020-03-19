@@ -57,7 +57,7 @@ def upload():
 					mnt = "October"
 				elif int(month) == 11:
 					mnt = "November"
-				else:
+				elif int(month) == 12:
 					mnt = "December"
 				cp_facts = facts
 				results = label_sentences(cp_facts)
