@@ -156,7 +156,9 @@ def label_sentences(data):
 		tokenizer = pickle.load(handle)
 		model = load_model("cnn_model_exp.h5")
 		sentences = []
+		original_sentences = []
 		for sentence in data:
+			original_sentences.append(sentence)
 			sentences.append(preprocessing(sentence))
 
 		test_sequences = tokenizer.texts_to_sequences(sentences)
@@ -167,7 +169,7 @@ def label_sentences(data):
 		result = []
 		i = 0
 		for p in predictions:
-			result.append((sentences[i],labels[np.argmax(p)]))
+			result.append((original_sentences[i],labels[np.argmax(p)]))
 			i += 1
 		return result
 	return None

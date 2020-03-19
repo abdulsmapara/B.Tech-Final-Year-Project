@@ -88,10 +88,10 @@
       if (i == files.length - 1){
         file_names += file.name
       } else{
-        file_names += file.name + "<br />"  
+        file_names += file.name + ","  
       }
     }
-    $('form p').text("Selected files:<br />" + file_names);
+    $('form p').text("Selected files:" + file_names);
 })
 
 </script>
