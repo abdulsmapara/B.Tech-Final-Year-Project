@@ -4,5 +4,5 @@
 
 #### Demonstration
 
-[https://github.com/pritamksahoo/param/blob/application/demo.gif](https://github.com/pritamksahoo/param/blob/application/demo.gif)
+![Demonstration](https://github.com/pritamksahoo/param/blob/application/demo.gif)
 
