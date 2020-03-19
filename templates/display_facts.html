@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Facts | Brokerage Reports </title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  
+  <style type="text/css">
+    
+    .timeline{
+      margin-top:20px;
+      position:relative;
+      
+    }
+
+    .timeline:before{
+      position:absolute;
+      content:'';
+      width:4px;
+      height:calc(100% + 50px);
+    background: rgb(138,145,150);
+    background: -moz-linear-gradient(left, rgba(138,145,150,1) 0%, rgba(122,130,136,1) 60%, rgba(98,105,109,1) 100%);
+    background: -webkit-linear-gradient(left, rgba(138,145,150,1) 0%,rgba(122,130,136,1) 60%,rgba(98,105,109,1) 100%);
+    background: linear-gradient(to right, rgba(138,145,150,1) 0%,rgba(122,130,136,1) 60%,rgba(98,105,109,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#8a9196', endColorstr='#62696d',GradientType=1 );
+      left:14px;
+      top:5px;
+      border-radius:4px;
+    }
+
+    .timeline-month{
+      position:relative;
+      padding:4px 15px 4px 35px;
+      background-color:#444950;
+      display:inline-block;
+      width:auto;
+      border-radius:40px;
+      border:1px solid #17191B;
+      border-right-color:black;
+      margin-bottom:30px;
+      color: white;
+    }
+
+    .timeline-month span{
+      position:absolute;
+      top:-1px;
+      left:calc(100% - 10px);
+      z-index:-1;
+      white-space:nowrap;
+      display:inline-block;
+      background-color:#111;
+      padding:4px 10px 4px 20px;
+      border-top-right-radius:40px;
+      border-bottom-right-radius:40px;
+      border:1px solid black;
+      box-sizing:border-box;
+    }
+
+    .timeline-month:before{
+      position:absolute;
+      content:'';
+      width:20px;
+      height:20px;
+    background: rgb(138,145,150);
+    background: -moz-linear-gradient(top, rgba(138,145,150,1) 0%, rgba(122,130,136,1) 60%, rgba(112,120,125,1) 100%);
+    background: -webkit-linear-gradient(top, rgba(138,145,150,1) 0%,rgba(122,130,136,1) 60%,rgba(112,120,125,1) 100%);
+    background: linear-gradient(to bottom, rgba(138,145,150,1) 0%,rgba(122,130,136,1) 60%,rgba(112,120,125,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#8a9196', endColorstr='#70787d',GradientType=0 );
+      border-radius:100%;
+      border:1px solid #17191B;
+      left:5px;
+    }
+
+    .timeline-section{
+      padding-left:35px;
+      display:block;
+      position:relative;
+      margin-bottom:30px;
+    }
+
+    .timeline-date{
+      margin-bottom:15px;
+      padding:2px 15px;
+      background:linear-gradient(#74cae3, #5bc0de 60%, #4ab9db);
+      position:relative;
+      display:inline-block;
+      border-radius:20px;
+      border:1px solid #17191B;
+      color:#fff;
+    text-shadow:1px 1px 1px rgba(0,0,0,0.3);
+    }
+    .timeline-section:before{
+      content:'';
+      position:absolute;
+      width:30px;
+      height:1px;
+      background-color:#444950;
+      top:12px;
+      left:20px;
+    }
+
+    .timeline-section:after{
+      content:'';
+      position:absolute;
+      width:10px;
+      height:10px;
+      background:linear-gradient(to bottom, rgba(138,145,150,1) 0%,rgba(122,130,136,1) 60%,rgba(112,120,125,1) 100%);
+      top:7px;
+      left:11px;
+      border:1px solid #17191B;
+      border-radius:100%;
+    }
+
+    .timeline-section .col-sm-4{
+      margin-bottom:15px;
+    }
+
+    .timeline-box{
+      position:relative;
+      
+     background-color:#444950;
+      border-radius:15px;
+      border-top-left-radius:0px;
+      border-bottom-right-radius:0px;
+      border:1px solid #17191B;
+      transition:all 0.3s ease;
+      overflow:hidden;
+    }
+
+    .box-icon{
+      position:absolute;
+      right:5px;
+      top:0px;
+    }
+
+    .box-title{
+      color: white;
+      padding:5px 15px;
+      border-bottom: 1px solid #17191B;
+    }
+
+    .box-title i{
+      margin-right:5px;
+    }
+
+    .box-content{
+      padding:5px 15px;
+      background-color:#17191B;
+      color: white;
+    }
+
+    .box-content strong{
+      color:#666;
+      font-style:italic;
+      margin-right:5px;
+    }
+
+    .box-item{
+      margin-bottom:5px;
+    }
+
+    .box-footer{
+     padding:5px 15px;
+      border-top: 1px solid #17191B;
+      background-color:#444950;
+      text-align:right;
+      font-style:italic;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+  <div class="row">
+    <div class="col-sm-5">
+    </div>
+    <div class="col-sm-6">
+      <h3>TIMELINE</h3>
+    </div>
+  </div>
+  </div>
+  <div class="container">
+    <div class="timeline">
+    {% for index, data in display_data1: %}      
+      {% if index == 0 or (data[0][0] != display_data2[index-1][0][0]) %}
+        <div class="timeline-month">
+          
+          {% print(data[0][0]) %}
+          
+        </div>
+      {% endif %}
+      <div class="timeline-section">
+        <div class="timeline-date">
+          {{data[0][2]}}&nbsp;&nbsp;{{data[0][1]}}
+        </div>
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="timeline-box">
+              <div class="box-title">
+                <i class="fa fa-asterisk text-success" aria-hidden="true"></i> Increasing Trends
+              </div>
+              <div class="box-content">
+                <ul>
+               {% for pos in data[1]: %}
+                  <li>{{pos}}</li>
+               {% endfor %}
+               </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="timeline-box">
+              <div class="box-title">
+                <i class="fa fa-pencil text-info" aria-hidden="true"></i> Decreasing Trends
+              </div>
+              <div class="box-content">
+                <ul>
+               {% for neg in data[2]: %}
+                  <li>{{neg}}</li>
+               {% endfor %}
+               </ul>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      
+      {% endfor %}
+        </div>
+      </div>
+
+</body>
+</html>
