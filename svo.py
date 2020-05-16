@@ -2,7 +2,6 @@ import spacy
 nlp = spacy.load('en')
 import nltk
 from spacy import displacy
-
 from pdfminer.pdfparser import PDFParser
 from pdfminer.pdfdocument import PDFDocument
 from datetime import datetime
@@ -102,7 +101,8 @@ def svo(sentences, subjects):
 				else:
 					prev_sub = subject
 				if (len(subject.strip()) > 0 and len(verb.strip()) >0 and len(obj.strip()) > 0):
-					svo_list.append(subject.strip() + "|" + verb.strip()+"|" + obj.strip())
+					if subject.strip() + "|" + verb.strip()+"|" + obj.strip() not in svo_list:
+						svo_list.append(subject.strip() + "|" + verb.strip()+"|" + obj.strip())
 			if is_noun_1:
 				is_noun_2 = True
 				is_noun_1 = False

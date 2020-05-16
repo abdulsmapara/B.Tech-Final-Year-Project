@@ -127,7 +127,6 @@ def get_facts(files,num,subjects):
 		svo = semi_structured_extraction_all(text, subjects)
 		fact = get_important_sentences(text, keywords)
 		facts[date] = (fact, svo)
-		print(svo)
 	return facts
 
 
