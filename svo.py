@@ -13,6 +13,7 @@ from pdfminer.pdfdevice import PDFDevice
 from pdfminer.converter import TextConverter
 from pdfminer.layout import LAParams
 from io import StringIO
+import re
 
 def get_text_from_pdf(path):
     resource_manager = PDFResourceManager()
@@ -91,15 +92,16 @@ def svo(sentences, subjects):
 					# Window approach
 					if is_noun_1 and is_noun_2:
 						subject = prev_token_2 + ' ' + prev_token_1
-					elif prev_token_1 in subjects or (is_noun_1):
+					elif prev_token_1.lower() in subjects or (is_noun_1):
 						subject = prev_token_1
-					elif prev_token_2 in subjects or (is_noun_2):
+					elif prev_token_2.lower() in subjects or (is_noun_2):
 						subject = prev_token_2
 					# for conjunctions
 					elif prev_token_1 in ["but", "and"]:
 							subject = prev_sub
 				else:
 					prev_sub = subject
+				subject = re.sub('['+'!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~'+']', '', subject)
 				if (len(subject.strip()) > 0 and len(verb.strip()) >0 and len(obj.strip()) > 0):
 					if subject.strip() + "|" + verb.strip()+"|" + obj.strip() not in svo_list:
 						svo_list.append(subject.strip() + "|" + verb.strip()+"|" + obj.strip())
@@ -127,7 +129,7 @@ def semi_structured_extraction_all(content, subjects):
 			continue
 		doc = nlp(sent)
 		for token in doc:
-			if (token.pos_ == "PROPN" and str(token) in subjects) or (token.pos_ == "NOUN" and str(token).lower() == "bank"):
+			if (token.pos_ == "PROPN" and str(token).lower() in subjects) or (token.pos_ == "NOUN" and str(token).lower() == "bank"):
 				sentences_to_consider.append(sent)
 	return svo(sentences_to_consider, subjects)
 

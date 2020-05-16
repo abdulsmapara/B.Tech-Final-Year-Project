@@ -26,7 +26,8 @@ def upload():
 	if request.method == 'POST':
 		try:
 			files = request.files.getlist('reports[]')
-			subjects = request.form['subjects']
+			subjects = request.form['subjects'].lower().strip()
+			print(subjects)
 			filenames = []
 			for f in files:
 				filename = secure_filename(f.filename)
