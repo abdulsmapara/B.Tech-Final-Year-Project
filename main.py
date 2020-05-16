@@ -3,7 +3,6 @@ from werkzeug import secure_filename
 import os
 from utils import get_facts, label_sentences, deleteDir
 import traceback
-import shutil
 
 app = Flask(__name__)
 app.secret_key = "password"
@@ -27,14 +26,23 @@ def upload():
 	if request.method == 'POST':
 		try:
 			files = request.files.getlist('reports[]')
+			subjects = request.form['subjects']
 			filenames = []
 			for f in files:
 				filename = secure_filename(f.filename)
 				filenames.append(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 				f.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-			timestamped_facts = get_facts(files=filenames, num=len(filenames))
+			timestamped_facts = get_facts(files=filenames, num=len(filenames), subjects=subjects)
+
 			final_list = []
-			for date, facts in timestamped_facts.items():
+			svo_list = []
+			for date, facts_tuple in timestamped_facts.items():
+				facts, svo = facts_tuple[0], facts_tuple[1]
+				svo_list = []
+				for f in svo:
+					sub, verb, obj = f.split("|")
+					if sub != "%":
+						svo_list.append((sub, verb, obj))
 				year, month, d = date.split("-")
 				mnt = "January"
 				if int(month) == 2:
@@ -66,10 +74,11 @@ def upload():
 				for result in results:
 					if result[1] == "POS":
 						pos.append(result[0])
-					else:
+					elif result[1] == "NEG":
 						neg.append(result[0])
-				final_list.append( ((year,mnt,d, month),pos,neg))
+				final_list.append(((year,mnt,d, month),pos,neg,svo_list))
 			final_list = sorted(final_list,key=lambda x: (int(x[0][0]), int(x[0][3]),int(x[0][2])))
+
 			return render_template("display_facts.html",display_data1=enumerate(final_list), display_data2=final_list)
 
 		except Exception as e:

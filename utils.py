@@ -1,6 +1,3 @@
-'''
-	@author: abdulsmapara
-'''
 from pdfminer.pdfparser import PDFParser
 from pdfminer.pdfdocument import PDFDocument
 from datetime import datetime
@@ -22,8 +19,7 @@ import re
 import pickle
 import numpy as np
 import os
-
-
+from svo import semi_structured_extraction_all
 nlp = spacy.load('en_core_web_sm')
 nltk.download('punkt')
 
@@ -44,7 +40,7 @@ def getPdfDate(path):
 		doc = PDFDocument(parser)
 		date_metadata = str.split(str(convertPdfDatetime(doc.info[0]["CreationDate"])) , " ")[0]
 		return date_metadata
-	except:
+	except Exception as e:
 		success_metadata = False
 		pass
 	finally:
@@ -112,7 +108,7 @@ def get_important_sentences(text, keywords):
 				break
 	return facts
 
-def get_facts(files,num):
+def get_facts(files,num,subjects):
 	texts = []
 	dates = []
 	for path in files:
@@ -125,13 +121,15 @@ def get_facts(files,num):
 		for keyword in all_keywords.split("\n"):
 			keywords.append(keyword)
 		f.close()
-	
+
 	facts = {}
 	for text,date in zip(texts,dates):
+		svo = semi_structured_extraction_all(text, subjects)
 		fact = get_important_sentences(text, keywords)
-		facts[date] = fact
-	
+		facts[date] = (fact, svo)
+		print(svo)
 	return facts
+
 
 
 def label_sentences(data):
@@ -154,16 +152,14 @@ def label_sentences(data):
 		return final_text.strip()
 	with open('tokenizer.pickle', 'rb') as handle:
 		tokenizer = pickle.load(handle)
-		model = load_model("cnn_model_exp.h5")
+		model = load_model("cnn_model_temp.h5")
 		sentences = []
 		original_sentences = []
 		for sentence in data:
 			original_sentences.append(sentence)
 			sentences.append(preprocessing(sentence))
-
 		test_sequences = tokenizer.texts_to_sequences(sentences)
 		test_cnn_data = pad_sequences(test_sequences, maxlen=MAX_SEQUENCE_LENGTH)
-		
 		predictions = model.predict(test_cnn_data)
 		labels = ['POS','NEG','NEU']
 		result = []
@@ -196,7 +192,7 @@ if __name__ == '__main__':
 		path = input("Path of pdf\t")
 		dates.append(getPdfDate(path))
 		texts.append(get_text_from_pdf(path))
-	
+
 	keywords = []
 
 	with open("keywords.txt","r") as f:
@@ -205,12 +201,11 @@ if __name__ == '__main__':
 			keywords.append(keyword)
 		f.close()
 	facts = []
-
-
-	print("FACTS:")
-	for text,date in zip(texts,dates):
-		fact = get_important_sentences(text, keywords)
-		facts.append((date,fact))
-	for val in facts:
-		print(val[0],' ',val[1],' ',len(val[1]))
-		print()
+	import textacy
+	nlp = spacy.load('en')
+	for content in texts:
+		semi_structured_extraction_all(content,["SBI","SBIN", "State Bank of India"])
+	# print("FACTS:")
+	# for text,date in zip(texts,dates):
+	# 	fact = get_important_sentences(text, keywords)
+	# 	facts.append((date,fact))

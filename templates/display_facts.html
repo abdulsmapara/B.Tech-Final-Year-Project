@@ -8,13 +8,13 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-  
+
   <style type="text/css">
-    
+
     .timeline{
       margin-top:20px;
       position:relative;
-      
+
     }
 
     .timeline:before{
@@ -121,7 +121,7 @@
 
     .timeline-box{
       position:relative;
-      
+
      background-color:#444950;
       border-radius:15px;
       border-top-left-radius:0px;
@@ -170,6 +170,19 @@
       text-align:right;
       font-style:italic;
     }
+	table {
+	table-layout: fixed ;
+	border: visible;
+	width: 100% ;
+	}
+	td {
+	width: 35%;
+	border: 1px solid white;
+	}
+	th {
+		border: 1px solid white;
+		text-align: center;
+	}
 
   </style>
 </head>
@@ -185,24 +198,55 @@
   </div>
   <div class="container">
     <div class="timeline">
-    {% for index, data in display_data1: %}      
+    {% for index, data in display_data1: %}
       {% if index == 0 or (data[0][0] != display_data2[index-1][0][0]) %}
         <div class="timeline-month">
-          
+
           {% print(data[0][0]) %}
-          
+
         </div>
       {% endif %}
       <div class="timeline-section">
         <div class="timeline-date">
           {{data[0][2]}}&nbsp;&nbsp;{{data[0][1]}}
         </div>
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="timeline-box">
+                      <div class="box-title">
+                        <i class="fa fa-asterisk text-success" aria-hidden="true"></i>
+                        <span style="align-content: center;">SEMI-STRUCTURED STATEMENTS</span>
+                      </div>
+                      <div class="box-content">
+                      <table>
+                        <thead>
+                          <th> SUBJECT</th>
+                          <th> LEMMA</th>
+                          <th> OBJECT</th>
+                        </thead>
+                        <tbody>
+                          
+                            {% for semi_structured in data[3]: %}
+                            <tr>
+                              <td style="text-align: center;">{{semi_structured[0]}}</td>
+                              <td style="text-align: center;">{{semi_structured[1]}}</td>
+                              <td style="text-align: center;">{{semi_structured[2]}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                      </table>
+                  </div>     
+                    </div>
+            </div>
+            </div>
+          <br />
         <div class="row">
           <div class="col-sm-6">
             <div class="timeline-box">
               <div class="box-title">
                 <i class="fa fa-asterisk text-success" aria-hidden="true"></i> Increasing Trends
               </div>
+
               <div class="box-content">
                 <ul>
                {% for pos in data[1]: %}
@@ -210,28 +254,27 @@
                {% endfor %}
                </ul>
               </div>
-            </div>
-          </div>
-          <div class="col-sm-6">
+		  </div>
+      </div>
+		<div class="col-sm-6">
             <div class="timeline-box">
               <div class="box-title">
                 <i class="fa fa-pencil text-info" aria-hidden="true"></i> Decreasing Trends
               </div>
-              <div class="box-content">
+			  <div class="box-content">
+				  <div class="box-content">
                 <ul>
                {% for neg in data[2]: %}
                   <li>{{neg}}</li>
                {% endfor %}
                </ul>
               </div>
+              </div>
             </div>
-          </div>
+		</div>
+    </div>
 
-        </div>
 
-      </div>
-
-      
       {% endfor %}
         </div>
       </div>
