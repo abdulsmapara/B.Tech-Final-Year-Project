@@ -116,7 +116,7 @@ def svo(sentences, subjects):
 				is_noun_1 = False
 			prev_token_2 = prev_token_1
 			prev_token_1 = token.text
-	print(svo_list)
+	# print(svo_list)
 	return svo_list
 
 def semi_structured_extraction_all(content, subjects):

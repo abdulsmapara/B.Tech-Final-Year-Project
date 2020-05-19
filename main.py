@@ -77,6 +77,8 @@ def upload():
 						pos.append(result[0])
 					elif result[1] == "NEG":
 						neg.append(result[0])
+					else:
+						print(result[0])
 				final_list.append(((year,mnt,d, month),pos,neg,svo_list))
 			final_list = sorted(final_list,key=lambda x: (int(x[0][0]), int(x[0][3]),int(x[0][2])))
 

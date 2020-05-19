@@ -95,9 +95,11 @@ def get_text_from_pdf(path):
 def get_important_sentences(text, keywords):
 	facts = []
 	for sentence in nltk.tokenize.sent_tokenize(text):
+		# print(sentence)
 		sent = sentence.replace("\n"," ")
-		if len(sent.split(" ")) > 35: # Too long fact
+		if len(sent.split(" ")) > 35 or len(sent.split(" ")) < 5: # Too long fact
 			continue
+		
 		for keyword in keywords:
 			if keyword in sent.lower():
 				parsed_sent = nlp(sent)
@@ -121,7 +123,9 @@ def get_facts(files,num,subjects):
 		for keyword in all_keywords.split("\n"):
 			keywords.append(keyword)
 		f.close()
-
+	all_subs = subjects.split(",")
+	for sub in all_subs:
+		keywords.append(sub.strip())
 	facts = {}
 	for text,date in zip(texts,dates):
 		svo = semi_structured_extraction_all(text, subjects)
@@ -151,12 +155,35 @@ def label_sentences(data):
 		return final_text.strip()
 	with open('tokenizer.pickle', 'rb') as handle:
 		tokenizer = pickle.load(handle)
-		model = load_model("cnn_model_temp.h5")
+		model = load_model("cnn_model.h5")
 		sentences = []
 		original_sentences = []
 		for sentence in data:
-			original_sentences.append(sentence)
-			sentences.append(preprocessing(sentence))
+			mult_sentences = False
+			mult_sentences_list = []
+			if "while" in sentence.lower():
+				mult_sentences = True
+				mult_sentences_list = str(sentence).split("while")
+			elif "and" in sentence.lower():
+				sentence = nlp(sentence)
+				mult_sentences = True
+				prev_parts = ""
+				for token in sentence:
+					if token.pos_ == "VERB":
+						prev_parts += (str(token))
+						break
+					else:
+						prev_parts += (str(token) + " ")
+				mult_sentences_list = str(sentence).split("and")
+				mult_sentences_list[1] = prev_parts + " " + mult_sentences_list[1]
+			if mult_sentences:
+				for sent in mult_sentences_list:
+					original_sentences.append(sent)
+					sentences.append(preprocessing(sent))
+					# print("MULTIPLE SENTENCES - ", sent)
+			else:
+				original_sentences.append(sentence)
+				sentences.append(preprocessing(sentence))
 		test_sequences = tokenizer.texts_to_sequences(sentences)
 		test_cnn_data = pad_sequences(test_sequences, maxlen=MAX_SEQUENCE_LENGTH)
 		predictions = model.predict(test_cnn_data)
