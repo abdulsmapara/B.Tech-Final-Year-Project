@@ -54,4 +54,4 @@ This branch (master) contains the source code of the application developed for d
 
 #### Demonstration
 
-Video - Download [Final-Year-Project-Demo](https://github.com/pritamksahoo/param/blob/master/Final-Year-Project-Demo.mp4) OR View [Final-Year-Project-Demo](https://vimeo.com/435035849)
+Video - Download [Final-Year-Project-Demo](https://github.com/pritamksahoo/B.Tech-Final-Year-Project/raw/master/Final-Year-Project-Demo.mp4)
