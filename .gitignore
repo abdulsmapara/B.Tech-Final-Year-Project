@@ -1,9 +1,12 @@
+<<<<<<< HEAD
 *.out
 *.exe
 *.jar
 __pycache__
 
 =======
+=======
+>>>>>>> 678c5440571299d1c1d06df50db85b6c32034986
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -108,6 +111,7 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+<<<<<<< HEAD
 
 # models
 *.h5
@@ -116,3 +120,5 @@ venv.bak/
 
 # specific to this application
 uploads/
+=======
+>>>>>>> 678c5440571299d1c1d06df50db85b6c32034986
