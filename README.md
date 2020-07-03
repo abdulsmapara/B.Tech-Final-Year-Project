@@ -1,28 +1,4 @@
-<<<<<<< HEAD
-## Final Application
-
-#### Note: The model for classifying increasing/decreasing trend is under development. So, output may not be as per expectations as of now.
-
-#### Demonstration
-
-<!--![Demonstration](https://github.com/pritamksahoo/param/blob/application/demo.gif)-->
-
-<p>Semi-structured statements SBI Report 2 August, 2019</p>
-
-![Demonstration](https://github.com/pritamksahoo/param/blob/application/facts_sbi_2_aug.png)
-
-<p>Semi-structured statements SBI Report December, 2019</p>
-
-![Demonstration](https://github.com/pritamksahoo/param/blob/application/facts_sbi_dec.png)
-
-<p>Semi-structured statements AXIS Report</p>
-
-![Demonstration](https://github.com/pritamksahoo/param/blob/application/facts_axis_bank.png)
-
-
-
-=======
-## B.Tech (Computer Science & Engineering) Final Year Project - VNIT, Nagpur
+### B.Tech (Computer Science & Engineering) Final Year Project - VNIT, Nagpur
 
 #### Team Members -
 1. Abdul Sattar Mapara
@@ -78,5 +54,4 @@ This branch (master) contains the source code of the application developed for d
 
 #### Demonstration
 
-Video - [Final-Year-Project-Demo](https://vimeo.com/435035849)
->>>>>>> 678c5440571299d1c1d06df50db85b6c32034986
+Video - Download [Final-Year-Project-Demo](https://github.com/pritamksahoo/param/blob/master/Final-Year-Project-Demo.mp4) OR View [Final-Year-Project-Demo](https://vimeo.com/435035849)
